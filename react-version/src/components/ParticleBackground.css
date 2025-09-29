@@ -1,0 +1,74 @@
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(-50px) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(50px) rotate(360deg);
+  }
+}
+
+/* Alternative floating animation */
+.particle:nth-child(odd) {
+  animation: particleFloatAlt linear infinite;
+}
+
+@keyframes particleFloatAlt {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(50px) rotate(0deg) scale(0.5);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(50vh) translateX(-25px) rotate(180deg) scale(1);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(-50px) rotate(360deg) scale(0.5);
+  }
+}
+
+/* Pulse effect for some particles */
+.particle:nth-child(3n) {
+  animation: particleFloat linear infinite, particlePulse ease-in-out infinite;
+}
+
+@keyframes particlePulse {
+  0%, 100% {
+    filter: blur(1px) brightness(1);
+  }
+  50% {
+    filter: blur(2px) brightness(1.5);
+  }
+}

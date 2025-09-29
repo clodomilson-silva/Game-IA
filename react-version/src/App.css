@@ -1,0 +1,123 @@
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-content {
+  padding: 40px 0;
+  min-height: calc(100vh - 140px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Game Container Styles */
+.game-container {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0.05;
+  z-index: -1;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background: var(--neon-blue);
+  color: var(--primary-bg);
+  transform: translateX(-5px);
+  box-shadow: var(--glow-blue);
+}
+
+.game-title {
+  font-size: 2rem;
+  color: var(--text-primary);
+  text-align: center;
+  flex: 1;
+}
+
+.score-display {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.score-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px 0;
+  }
+  
+  .game-container {
+    padding: 20px;
+    margin: 0 10px;
+  }
+  
+  .game-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+  
+  .score-display {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 15px;
+    margin: 0 5px;
+  }
+  
+  .game-title {
+    font-size: 1.3rem;
+  }
+}

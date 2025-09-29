@@ -1,0 +1,191 @@
+.main-menu {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.menu-title {
+  font-size: 3rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px 30px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--game-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.game-card:hover::before {
+  opacity: 0.1;
+}
+
+.game-card:hover {
+  border-color: var(--game-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--game-glow);
+}
+
+.game-icon {
+  font-size: 4rem;
+  color: var(--game-color);
+  margin-bottom: 25px;
+  filter: drop-shadow(var(--game-glow));
+  position: relative;
+  z-index: 2;
+}
+
+.game-title {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.game-description {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  line-height: 1.6;
+  font-size: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.play-button {
+  background: linear-gradient(135deg, var(--game-color), rgba(255, 255, 255, 0.1));
+  color: var(--text-primary);
+  border: none;
+  padding: 15px 35px;
+  border-radius: 25px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--game-glow);
+}
+
+.play-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, var(--game-color), transparent);
+  z-index: 1;
+}
+
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(circle, var(--game-color), transparent);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .game-card {
+    padding: 30px 25px;
+  }
+  
+  .game-icon {
+    font-size: 3rem;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .games-grid {
+    padding: 0 10px;
+    gap: 20px;
+  }
+  
+  .game-card {
+    padding: 25px 20px;
+  }
+  
+  .game-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .game-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .game-description {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+  
+  .play-button {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
+}
