@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaMemory, FaPuzzlePiece, FaQuestionCircle } from 'react-icons/fa'
+import { FaMemory, FaPuzzlePiece, FaQuestionCircle, FaVrCardboard } from 'react-icons/fa'
 
 const MainMenu = ({ onGameSelect }) => {
   const games = [
@@ -27,6 +27,14 @@ const MainMenu = ({ onGameSelect }) => {
       icon: <FaQuestionCircle />,
       color: 'var(--neon-green)',
       glow: 'var(--glow-green)'
+    },
+    {
+      id: 'vr',
+      title: '🥽 Experiência VR',
+      description: 'Jogos em Realidade Virtual - HTC Vive Cosmos Elite',
+      icon: <FaVrCardboard />,
+      color: 'var(--neon-pink)',
+      glow: 'var(--glow-pink)'
     }
   ]
 
