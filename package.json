@@ -1,8 +1,0 @@
-{
-  "name": "game-ia-vr",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "cd react-version && npm install && npm run build",
-    "vercel-build": "cd react-version && npm install && npm run build"
-  }
-}
