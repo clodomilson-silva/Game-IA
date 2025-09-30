@@ -1,0 +1,53 @@
+# Vercel ignore - Game IA VR Project
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Docker files (não necessários no Vercel)
+Dockerfile
+docker-compose.yml
+nginx.conf
+.dockerignore
+
+# Development files
+.env.local
+.env.development.local
+.env.test.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+
+# Logs
+*.log
+logs/
+
+# Test files
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+
+# Documentation markdown (manter apenas README principal)
+DOCKER-README.md
+build.sh
+build.bat
+
+# Cache
+.cache/
+.parcel-cache/
