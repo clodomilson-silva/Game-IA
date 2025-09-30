@@ -294,7 +294,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:build": "docker build -t game-ia:latest .",
+    "docker:run": "docker run -d -p 8080:80 --name game-ia-app game-ia:latest",
+    "docker:stop": "docker stop game-ia-app && docker rm game-ia-app",
+    "docker:compose": "docker-compose up -d",
+    "docker:compose:down": "docker-compose down"
   },
   "keywords": [],
   "author": "",

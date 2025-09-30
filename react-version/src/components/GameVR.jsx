@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useRef, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { XR, VRButton, Controllers, Hands, Box, Text, OrbitControls } from '@react-three/xr'
-import { Environment, Text3D, Center, MeshWobbleMaterial, Sphere, PresentationControls } from '@react-three/drei'
+import { XR, VRButton, Controllers, Hands } from '@react-three/xr'
+import { Environment, Text3D, Center, MeshWobbleMaterial, Sphere, PresentationControls, Text, OrbitControls, Box } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Componente do Menu Principal VR
