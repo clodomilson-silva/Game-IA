@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useRef, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { XR, VRButton, Controllers, Hands } from '@react-three/xr'
-import { Environment, Text3D, Center, MeshWobbleMaterial, Sphere, PresentationControls, Text, OrbitControls, Box } from '@react-three/drei'
+import { Environment, Text, Center, MeshWobbleMaterial, Sphere, PresentationControls, OrbitControls, Box } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Componente do Menu Principal VR
@@ -28,7 +28,6 @@ const VRMainMenu = ({ onGameSelect, onExitVR }) => {
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
-        font="/fonts/orbitron-bold.woff"
       >
         {text}
       </Text>
@@ -38,17 +37,15 @@ const VRMainMenu = ({ onGameSelect, onExitVR }) => {
   return (
     <group>
       {/* Título Principal */}
-      <Center position={[0, 3, 0]}>
-        <Text3D
-          font="/fonts/orbitron-bold.json"
-          size={0.8}
-          height={0.1}
-          curveSegments={12}
-        >
-          GAME IA VR
-          <MeshWobbleMaterial factor={0.5} speed={2} color="#00ffff" />
-        </Text3D>
-      </Center>
+      <Text
+        position={[0, 3, 0]}
+        fontSize={0.8}
+        color="#00ffff"
+        anchorX="center"
+        anchorY="middle"
+      >
+        GAME IA VR
+      </Text>
 
       {/* Subtítulo */}
       <Text
@@ -384,9 +381,21 @@ const GameVR = () => {
           </p>
         </div>
       ) : (
-        // Canvas VR
-        <Canvas camera={{ position: [0, 1.6, 3] }} style={{ background: '#000011' }}>
-          <XR>
+        // Canvas VR simplificado para melhor compatibilidade
+        <Canvas 
+          camera={{ position: [0, 1.6, 3], fov: 75 }} 
+          style={{ background: '#000011' }}
+        >
+          <XR
+            onSessionStart={() => {
+              console.log('XR Session Started')
+              setIsVRMode(true)
+            }}
+            onSessionEnd={() => {
+              console.log('XR Session Ended')
+              setIsVRMode(false)
+            }}
+          >
             <VRGameApp 
               currentGame={currentGame}
               onGameSelect={handleGameSelect}
@@ -397,23 +406,35 @@ const GameVR = () => {
         </Canvas>
       )}
       
-      {/* Botão VR (necessário para WebXR) */}
-      {isVRMode && (
-        <VRButton 
-          style={{
-            position: 'absolute',
-            bottom: '20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            padding: '10px 20px',
-            fontSize: '16px',
-            background: '#ff00ff',
-            border: 'none',
-            borderRadius: '5px',
-            color: '#ffffff'
-          }}
-        />
-      )}
+      {/* Botão VR (sempre visível para ativar WebXR) */}
+      <VRButton 
+        onSessionStart={() => {
+          console.log('VR Session iniciada!')
+          setIsVRMode(true)
+        }}
+        onSessionEnd={() => {
+          console.log('VR Session finalizada!')
+          setIsVRMode(false)
+        }}
+        style={{
+          position: 'absolute',
+          bottom: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          padding: '12px 24px',
+          fontSize: '16px',
+          background: isVRMode ? '#00ff00' : '#ff00ff',
+          border: 'none',
+          borderRadius: '8px',
+          color: '#ffffff',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          zIndex: 1000,
+          boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
+        }}
+      >
+        {isVRMode ? 'VR ATIVO' : 'ENTRAR EM VR'}
+      </VRButton>
     </div>
   )
 }
