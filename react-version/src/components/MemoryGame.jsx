@@ -61,26 +61,6 @@ const MemoryGame = ({ onBack }) => {
     },
     { 
       id: 6, 
-      content: { icon: SiAmazonaws, name: 'AWS' }, 
-      pair: { icon: SiAmazonaws, name: 'AWS' }
-    },
-    { 
-      id: 7, 
-      content: { icon: SiMicrosoftazure, name: 'Azure' }, 
-      pair: { icon: SiMicrosoftazure, name: 'Azure' }
-    },
-    { 
-      id: 8, 
-      content: { icon: SiGooglecloud, name: 'Google Cloud' }, 
-      pair: { icon: SiGooglecloud, name: 'Google Cloud' }
-    },
-    { 
-      id: 9, 
-      content: { icon: SiMongodb, name: 'MongoDB' }, 
-      pair: { icon: SiMongodb, name: 'MongoDB' }
-    },
-    { 
-      id: 10, 
       content: { icon: SiGit, name: 'Git' }, 
       pair: { icon: SiGit, name: 'Git' }
     }

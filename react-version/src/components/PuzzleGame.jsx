@@ -244,16 +244,17 @@ const PuzzleGame = ({ onBack }) => {
         </div>
 
         <div className="puzzle-container">
-          <motion.div 
-            ref={puzzleBoardRef}
-            className="puzzle-board"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              duration: 0.4,
-              ease: "easeOut"
-            }}
-          >
+          <div className="puzzle-game-content">
+            <motion.div 
+              ref={puzzleBoardRef}
+              className="puzzle-board"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 0.4,
+                ease: "easeOut"
+              }}
+            >
             {pieces.map((piece, index) => (
               <motion.div
                 key={`${piece}-${index}`}
@@ -328,6 +329,7 @@ const PuzzleGame = ({ onBack }) => {
             >
               {currentImage.name}
             </p>
+          </div>
           </div>
         </div>
 
