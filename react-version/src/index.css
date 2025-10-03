@@ -45,6 +45,7 @@ html {
   --glow-purple: 0 0 20px rgba(184, 41, 255, 0.5);
   --glow-green: 0 0 20px rgba(57, 255, 20, 0.5);
   --glow-pink: 0 0 20px rgba(255, 20, 147, 0.5);
+  --glow-orange: 0 0 20px rgba(255, 102, 0, 0.5);
   
   /* Fonts para Games */
   --font-primary: 'Exo 2', 'Rajdhani', sans-serif;
@@ -455,7 +456,8 @@ button {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   padding-top: clamp(2rem, 5vh, 4rem);
 }
 
@@ -468,10 +470,12 @@ button {
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2rem);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(1.2rem, 2.5vw, 1.8rem);
   padding: 0 1rem;
-  max-width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   justify-items: center;
   margin-top: 0;
 }
@@ -479,7 +483,7 @@ button {
 .game-card {
   background: var(--card-bg);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   text-align: center;
   position: relative;
   cursor: pointer;
@@ -488,8 +492,11 @@ button {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   height: 100%;
-  min-height: 400px;
+  min-height: 380px;
+  box-sizing: border-box;
 }
 
 .game-card:hover {
@@ -498,41 +505,50 @@ button {
 }
 
 .game-icon {
-  font-size: 4rem;
+  font-size: clamp(3rem, 5vw, 4rem);
   color: var(--game-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   filter: drop-shadow(var(--game-glow));
+  flex-shrink: 0;
 }
 
 .game-title {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+  margin-bottom: 0.8rem;
   color: var(--text-primary);
+  font-weight: 600;
+  flex-shrink: 0;
 }
 
 .game-description {
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  padding: 0 0.5rem;
 }
 
 .play-button {
   background: var(--gradient-primary);
   border: none;
   color: var(--text-primary);
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   border-radius: 50px;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  font-weight: 500;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  margin-top: auto;
   align-self: center;
+  flex-shrink: 0;
+  min-width: 120px;
+  box-sizing: border-box;
 }
 
 .play-button:hover {
@@ -543,6 +559,56 @@ button {
 .play-button span {
   position: relative;
   z-index: 2;
+}
+
+/* Estrutura interna dos cards para melhor organização */
+.game-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.game-card-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.game-card-footer {
+  flex-shrink: 0;
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Garantir uniformidade visual dos cards */
+.game-card .game-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+.game-card .game-description {
+  font-family: var(--font-body) !important;
+  letter-spacing: 0.5px !important;
+  text-align: center !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.5 !important;
+}
+
+.game-card .play-button {
+  font-family: var(--font-ui) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
 }
 
 .button-glow {
@@ -1378,6 +1444,239 @@ button {
   margin-top: 2rem;
 }
 
+/* Crossword Game Styles */
+.crossword-game {
+  min-height: 100vh;
+  background: var(--primary-bg);
+  padding: clamp(0.5rem, 2vw, 1rem) 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  isolation: isolate;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: clamp(1rem, 2vh, 2rem);
+}
+
+.crossword-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.8rem);
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(0.3rem, 0.8vw, 0.8rem);
+  max-width: 100vw;
+  margin: 0 auto;
+  min-height: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.crossword-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.crossword-grid {
+  display: grid;
+  grid-template-rows: repeat(12, 1fr);
+  gap: 2px;
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--glow-blue);
+}
+
+.crossword-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2px;
+}
+
+.crossword-cell {
+  width: clamp(25px, 4vw, 35px);
+  height: clamp(25px, 4vw, 35px);
+  border: none;
+  text-align: center;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.crossword-cell.inactive {
+  background: var(--primary-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.crossword-cell.active {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--neon-blue);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.crossword-cell.active:focus {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+  transform: scale(1.1);
+}
+
+.crossword-cell.correct {
+  background: rgba(57, 255, 20, 0.2);
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+}
+
+.crossword-cell.selected {
+  background: rgba(138, 43, 226, 0.3);
+  border-color: var(--neon-purple);
+}
+
+.crossword-clues {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 500px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.clues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.clue-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clue-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--neon-blue);
+  transform: translateY(-2px);
+}
+
+.clue-item.selected {
+  background: rgba(138, 43, 226, 0.2);
+  border-color: var(--neon-purple);
+}
+
+.clue-item.completed {
+  background: rgba(57, 255, 20, 0.1);
+  border-color: var(--neon-green);
+}
+
+.clue-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  background: var(--gradient-accent);
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.check-icon {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: var(--neon-green);
+  background: var(--primary-bg);
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 0.8rem;
+}
+
+.clue-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.clue-direction {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.clue-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.hint {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  background: rgba(57, 255, 20, 0.1);
+  border-radius: 5px;
+  border: 1px solid var(--neon-green);
+}
+
+.hint-button {
+  background: var(--gradient-primary);
+  border: none;
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+}
+
+.hint-button:hover {
+  transform: scale(1.1);
+  box-shadow: var(--glow-blue);
+}
+
+/* Header específico do crossword com menos espaçamento */
+.crossword-game .game-header {
+  margin-bottom: clamp(0.8rem, 2vh, 1.5rem);
+}
+
+/* Controles específicos do crossword com menos espaçamento */
+.crossword-game .game-controls {
+  margin-top: clamp(0.5rem, 1vh, 0.8rem);
+  margin-bottom: clamp(0.3rem, 0.5vh, 0.5rem);
+}
+
 .next-button {
   background: var(--gradient-primary);
   border: none;
@@ -1397,6 +1696,240 @@ button {
 .next-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Word Search Game Styles */
+.word-search-game {
+  min-height: 100vh;
+  background: var(--primary-bg);
+  padding: clamp(0.5rem, 2vw, 1rem) 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  isolation: isolate;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: clamp(1rem, 2vh, 2rem);
+}
+
+.word-search-container {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(0.5rem, 1vw, 1rem);
+  max-width: 100vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.word-search-grid {
+  display: grid;
+  grid-template-rows: repeat(15, 1fr);
+  gap: 2px;
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--glow-blue);
+  user-select: none;
+  cursor: crosshair;
+  flex-shrink: 0;
+}
+
+.word-search-row {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 2px;
+}
+
+.word-search-cell {
+  width: clamp(20px, 2.5vw, 35px);
+  height: clamp(20px, 2.5vw, 35px);
+  background: var(--secondary-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  user-select: none;
+}
+
+.word-search-cell:hover {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: var(--neon-blue);
+  transform: scale(1.05);
+}
+
+.word-search-cell.selected {
+  background: var(--gradient-primary);
+  border-color: var(--neon-blue);
+  color: var(--text-primary);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.word-search-cell.found {
+  background: var(--gradient-green);
+  border-color: var(--neon-green);
+  color: var(--text-primary);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.word-search-cell .cell-letter {
+  font-size: clamp(10px, 1.5vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.words-list {
+  background: var(--card-bg);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: var(--glow-purple);
+  flex-shrink: 0;
+}
+
+.words-list h3 {
+  font-family: var(--font-heading);
+  color: var(--neon-purple);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.words-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.word-item {
+  background: var(--secondary-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.word-item.found {
+  background: var(--gradient-green);
+  border-color: var(--neon-green);
+  color: var(--text-primary);
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
+.word-item:not(.found):hover {
+  background: rgba(184, 41, 255, 0.2);
+  border-color: var(--neon-purple);
+  transform: translateX(5px);
+}
+
+.check-icon {
+  color: var(--neon-green);
+  font-size: 1rem;
+}
+
+.victory-message {
+  background: var(--gradient-green);
+  color: var(--text-primary);
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: var(--glow-green);
+  margin-top: 1rem;
+}
+
+/* Responsive para Word Search */
+@media (max-width: 1024px) {
+  .word-search-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .word-search-grid {
+    margin-bottom: 1rem;
+  }
+  
+  .words-list {
+    max-width: 100%;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .word-search-cell {
+    width: clamp(18px, 3vw, 25px);
+    height: clamp(18px, 3vw, 25px);
+  }
+  
+  .word-search-cell .cell-letter {
+    font-size: clamp(8px, 2vw, 12px);
+  }
+  
+  .word-search-grid {
+    padding: 0.5rem;
+  }
+  
+  .words-list {
+    padding: 1rem;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-search-cell {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .word-search-cell .cell-letter {
+    font-size: 10px;
+  }
+  
+  .word-search-grid {
+    gap: 1px;
+    padding: 0.3rem;
+  }
+  
+  .words-list {
+    min-width: 180px;
+    padding: 0.8rem;
+  }
+  
+  .words-grid {
+    gap: 0.3rem;
+  }
+  
+  .word-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 
 /* Particle Background */
@@ -1428,19 +1961,52 @@ button {
   }
   
   .games-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
+    max-width: 700px;
   }
   
   .game-card {
-    padding: 1.5rem;
-    min-height: 350px;
+    padding: 1.4rem 1.2rem;
+    min-height: 340px;
+    gap: 1rem;
+  }
+  
+  .game-icon {
+    font-size: 3.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  .play-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
   }
   
   .main-menu {
     padding: clamp(0.5rem, 1vh, 1rem) 1.5rem;
     padding-top: clamp(1rem, 3vh, 2rem);
     justify-content: flex-start;
+  }
+}
+
+/* Telas intermediárias - Layout 2x2 para melhor organização */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    max-width: 750px;
+    gap: 1.8rem;
+  }
+  
+  .game-card {
+    min-height: 300px;
+    padding: 1.3rem;
   }
 }
 
@@ -1749,12 +2315,59 @@ button {
   }
   
   .game-card {
-    padding: 1.5rem;
+    padding: 1.5rem 1.3rem;
+    min-height: 320px;
+    max-height: 360px;
+    gap: 0.8rem;
+  }
+  
+  .game-icon {
+    font-size: 3.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .game-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .play-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
   }
 }
 
 /* Desktop */
 @media screen and (min-width: 1025px) {
+  .games-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    max-width: 1100px;
+    gap: 1.8rem;
+  }
+  
+  .game-card {
+    min-height: 320px;
+    max-height: 360px;
+    padding: 1.4rem 1.2rem;
+    gap: 0.8rem;
+  }
+  
+  .game-icon {
+    font-size: 3.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.7rem;
+  }
+
   .puzzle-container {
     min-height: 90vh;
     padding: 1.5rem;
@@ -1830,7 +2443,20 @@ button {
 }
 
 /* Telas muito grandes */
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1440px) and (max-width: 1599px) {
+  .games-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    max-width: 1200px;
+    gap: 2rem;
+  }
+  
+  .game-card {
+    min-height: 280px;
+    max-height: 300px;
+    padding: 1.5rem;
+  }
+
   .memory-board {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -1861,8 +2487,95 @@ button {
   }
 }
 
+/* Telas de 17 polegadas e monitores grandes (1600px+) */
+@media screen and (min-width: 1600px) {
+  .main-menu {
+    max-width: 1400px;
+    padding: 1.5rem 2rem;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    max-width: 1300px;
+    gap: 2rem;
+    margin: 0 auto;
+  }
+  
+  .game-card {
+    min-height: 320px;
+    max-height: 360px;
+    padding: 1.8rem 1.5rem;
+    width: 100%;
+    max-width: 300px;
+    gap: 1rem;
+  }
+  
+  .game-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .game-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-description {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+  }
+  
+  .play-button {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+  }
+  
+  .menu-title {
+    margin-bottom: 2rem;
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
+  }
+}
+
 /* Telas ultra-wide */
 @media screen and (min-width: 1920px) {
+  .games-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    max-width: 1500px;
+    gap: 2.5rem;
+  }
+  
+  .game-card {
+    min-height: 340px;
+    max-height: 380px;
+    padding: 2rem 1.8rem;
+    max-width: 350px;
+    gap: 1rem;
+  }
+  
+  .game-icon {
+    font-size: 4.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-description {
+    font-size: 1.05rem;
+    margin-bottom: 1.4rem;
+  }
+  
+  .play-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+  
   .memory-board {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -1927,5 +2640,182 @@ button {
   .game-card {
     max-width: min(400px, 25vw);
     min-height: 420px;
+  }
+}
+
+/* Responsive Design para Crossword Game */
+
+/* Mobile */
+@media (max-width: 768px) {
+  .crossword-content {
+    flex-direction: column;
+    gap: clamp(1rem, 3vh, 2rem);
+  }
+  
+  .crossword-grid {
+    padding: 0.5rem;
+    overflow-x: auto;
+  }
+  
+  .crossword-cell {
+    width: clamp(20px, 6vw, 28px);
+    height: clamp(20px, 6vw, 28px);
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+  }
+  
+  .crossword-clues {
+    max-height: 40vh;
+    padding: 1rem;
+  }
+  
+  .clue-item {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+  
+  .clue-number {
+    min-width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .crossword-game .game-controls {
+    margin-top: clamp(0.3rem, 0.8vh, 0.5rem);
+    margin-bottom: clamp(0.2rem, 0.3vh, 0.3rem);
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .crossword-cell {
+    width: clamp(18px, 7vw, 25px);
+    height: clamp(18px, 7vw, 25px);
+    font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+  }
+  
+  .crossword-grid {
+    padding: 0.3rem;
+    gap: 1px;
+  }
+  
+  .crossword-row {
+    gap: 1px;
+  }
+  
+  .crossword-clues {
+    padding: 0.8rem;
+  }
+  
+  .clue-item {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+  
+  .clue-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .crossword-content {
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vh, 2.5rem);
+  }
+  
+  .crossword-cell {
+    width: clamp(28px, 5vw, 32px);
+    height: clamp(28px, 5vw, 32px);
+  }
+  
+  .crossword-clues {
+    max-height: 50vh;
+  }
+  
+  .crossword-game .game-controls {
+    margin-top: clamp(0.5rem, 1vh, 0.8rem);
+    margin-bottom: clamp(0.3rem, 0.8vh, 0.5rem);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1025px) {
+  .crossword-content {
+    flex-direction: row;
+    gap: clamp(3rem, 5vw, 4rem);
+    align-items: flex-start;
+  }
+  
+  .crossword-grid {
+    flex-shrink: 0;
+  }
+  
+  .crossword-clues {
+    flex: 1;
+    max-width: 400px;
+    max-height: 70vh;
+  }
+  
+  .crossword-game .game-controls {
+    margin-top: clamp(0.5rem, 1vh, 0.8rem);
+    margin-bottom: clamp(0.3rem, 0.5vh, 0.5rem);
+  }
+}
+
+/* Telas grandes */
+@media screen and (min-width: 1440px) {
+  .crossword-cell {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+  
+  .crossword-grid {
+    padding: 1.5rem;
+  }
+  
+  .crossword-clues {
+    max-width: 450px;
+  }
+  
+  .crossword-game .game-controls {
+    margin-top: clamp(0.6rem, 1.2vh, 1rem);
+    margin-bottom: clamp(0.4rem, 0.8vh, 0.6rem);
+  }
+
+  /* Layout otimizado para menu principal com 4 cards */
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    max-width: 500px;
+    gap: 1rem;
+  }
+  
+  .game-card {
+    min-height: 320px;
+    padding: 1.2rem 1rem;
+    gap: 0.8rem;
+  }
+  
+  .game-icon {
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .game-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .game-description {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  
+  .play-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 100px;
   }
 }

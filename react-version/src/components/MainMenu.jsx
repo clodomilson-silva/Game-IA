@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaMemory, FaPuzzlePiece, FaQuestionCircle } from 'react-icons/fa'
+import { FaMemory, FaPuzzlePiece, FaQuestionCircle, FaSearch } from 'react-icons/fa'
 
 const MainMenu = ({ onGameSelect }) => {
   const games = [
@@ -27,6 +27,14 @@ const MainMenu = ({ onGameSelect }) => {
       icon: <FaQuestionCircle />,
       color: 'var(--neon-green)',
       glow: 'var(--glow-green)'
+    },
+    {
+      id: 'crossword',
+      title: 'Caça-Palavras',
+      description: 'Encontre palavras de tecnologia escondidas no grid de letras',
+      icon: <FaSearch />,
+      color: 'var(--neon-orange)',
+      glow: 'var(--glow-orange)'
     }
   ]
 

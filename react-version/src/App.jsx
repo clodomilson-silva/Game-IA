@@ -6,6 +6,7 @@ import MainMenu from './components/MainMenu'
 const MemoryGame = lazy(() => import('./components/MemoryGame'))
 const PuzzleGame = lazy(() => import('./components/PuzzleGame'))
 const QuizGame = lazy(() => import('./components/QuizGame'))
+const CrosswordGame = lazy(() => import('./components/CrosswordGame'))
 import ParticleBackground from './components/ParticleBackground'
 import './App.css'
 
@@ -61,6 +62,11 @@ function App() {
     quiz: (
       <Suspense fallback={<LoadingSpinner />}>
         <QuizGame onBack={() => setCurrentGame('menu')} />
+      </Suspense>
+    ),
+    crossword: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <CrosswordGame onBack={() => setCurrentGame('menu')} />
       </Suspense>
     )
   }
